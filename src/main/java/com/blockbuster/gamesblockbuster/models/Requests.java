@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.sql.Date;
 
 @AllArgsConstructor
@@ -19,7 +16,7 @@ import java.sql.Date;
 public class Requests {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private boolean status; // true: approved, false: denied
@@ -28,8 +25,8 @@ public class Requests {
     private int numberOfDays;
     private int extraDays;
 
-    @OneToOne
+    @OneToOne(targetEntity = User.class)
     private User requestOwner;
-    @OneToOne
+    @OneToOne(targetEntity = GameInstance.class)
     private GameInstance requestedGame;
 }

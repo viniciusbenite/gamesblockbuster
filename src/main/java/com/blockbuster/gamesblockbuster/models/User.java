@@ -5,11 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +16,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String lastName;
@@ -27,8 +24,8 @@ public class User {
     private String mail;
     private boolean type; // true: admin, false: common user
 
-    @OneToMany
-    private List<Requests> userRequests;
+    @OneToMany(targetEntity = Requests.class)
+    private Set<Requests> userRequests;
 
     public boolean getType() { return this.type; }
 }

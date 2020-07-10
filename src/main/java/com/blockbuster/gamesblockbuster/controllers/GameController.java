@@ -22,10 +22,10 @@ public class GameController {
         return gameRepository.findAll();
     }
 
-    @GetMapping(path = {"{/id}"})
+    @GetMapping(path = {"/{id}"})
     ResponseEntity<Game> getSingleGame(@PathVariable("id") long id) {
         return gameRepository.findById(id)
-                .map(response -> ResponseEntity.ok().body(response))
+                .map(game -> ResponseEntity.ok().body(game))
                 .orElse(ResponseEntity.notFound().build());
     }
 
@@ -34,7 +34,7 @@ public class GameController {
         return gameRepository.save(newGame);
     }
 
-    @PutMapping(path = {"{/id}"})
+    @PutMapping(path = {"/{id}"})
     ResponseEntity<Game> updateGame(@PathVariable("id") long id,
                                     @RequestBody Game game) {
         return gameRepository.findById(id)
@@ -50,7 +50,7 @@ public class GameController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping(path = {"{/id}"})
+    @DeleteMapping(path = {"/{id}"})
     ResponseEntity<Game> removeGame(@PathVariable("id") long id) {
         return gameRepository.findById(id)
                 .map(game -> {

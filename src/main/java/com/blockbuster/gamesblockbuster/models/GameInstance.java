@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,10 +15,11 @@ import javax.persistence.OneToOne;
 public class GameInstance {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Game.class)
     private Game gameInstance;
-    @OneToOne
+    @OneToOne(targetEntity = User.class)
     private User rentedBy;
 }
