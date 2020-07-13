@@ -29,7 +29,7 @@ public class LogoutController extends SecurityContextLogoutHandler {
      * @param clientRegistrationRepository the {@code ClientRegistrationRepository} for this application.
      */
     @Autowired
-    public LogoutHandler(ClientRegistrationRepository clientRegistrationRepository) {
+    public LogoutController(ClientRegistrationRepository clientRegistrationRepository) {
         this.clientRegistrationRepository = clientRegistrationRepository;
     }
 

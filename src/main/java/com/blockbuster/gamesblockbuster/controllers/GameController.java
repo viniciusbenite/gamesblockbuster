@@ -2,13 +2,15 @@ package com.blockbuster.gamesblockbuster.controllers;
 
 import com.blockbuster.gamesblockbuster.models.Game;
 import com.blockbuster.gamesblockbuster.repositories.GameRepository;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping({"/api/game"})
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping( path = {"/api/game"}, consumes = MediaType.ALL_VALUE)
 public class GameController {
 
     private final GameRepository gameRepository;
