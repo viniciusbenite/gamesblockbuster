@@ -5,8 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,10 +24,7 @@ public class Game {
     private String title;
     private String genre;
     private int releaseYear;
-    private int totalQuantity;
-    private int borrowedQuantity;
 
-    @ManyToMany(targetEntity = Platform.class)
-    private Set<Platform> platforms;
-
+//    @ManyToMany(targetEntity = Platform.class)
+//    private Set<Platform> platforms;
 }

@@ -19,7 +19,7 @@ public class Requests {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private boolean status; // true: approved, false: denied
+    private String status; // 'approved', 'denied' or 'pending'
     private boolean returned; // true: returned, false: product with user
     private Date requestDate;
     private int numberOfDays;
@@ -27,6 +27,6 @@ public class Requests {
 
     @OneToOne(targetEntity = User.class)
     private User requestOwner;
-    @OneToOne(targetEntity = GameInstance.class)
-    private GameInstance requestedGame;
+    @OneToOne(targetEntity = GamePlatform.class)
+    private GamePlatform requestedGame;
 }

@@ -42,11 +42,11 @@ public class GameController {
         return gameRepository.findById(id)
                 .map(game1 -> {
                     game1.setTitle(game.getTitle());
-                    game1.setReleaseYear(game.getReleaseYear());
-                    game1.setTotalQuantity(game.getTotalQuantity());
-                    game1.setBorrowedQuantity(game.getBorrowedQuantity());
                     game1.setGenre(game.getGenre());
-                    game1.setPlatforms(game.getPlatforms());
+                    game1.setReleaseYear(game.getReleaseYear());
+//                    game1.setTotalQuantity(game.getTotalQuantity());
+//                    game1.setBorrowedQuantity(game.getBorrowedQuantity());
+//                    game1.setPlatforms(game.getPlatforms());
                     Game updatedGame = gameRepository.save(game1);
                     return ResponseEntity.ok().body(updatedGame);
                 }).orElse(ResponseEntity.notFound().build());

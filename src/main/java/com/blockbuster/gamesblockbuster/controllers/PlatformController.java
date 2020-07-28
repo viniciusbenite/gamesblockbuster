@@ -42,6 +42,7 @@ public class PlatformController {
         return platformRepository.findById(id)
                 .map(platform1 -> {
                     platform1.setPlatform(platform.getPlatform());
+//                    platform1.setGames(platform.getGames());
                     Platform updatedPlatform = platformRepository.save(platform1);
                     return ResponseEntity.ok().body(updatedPlatform);
                 }).orElse(ResponseEntity.notFound().build());

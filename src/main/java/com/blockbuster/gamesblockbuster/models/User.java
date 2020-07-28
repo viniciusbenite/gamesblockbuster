@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -25,7 +26,11 @@ public class User {
     private boolean type; // true: admin, false: common user
 
     @OneToMany(targetEntity = Requests.class)
-    private Set<Requests> userRequests;
+    private Set<Requests> userRequests = new HashSet<>();
 
     public boolean getType() { return this.type; }
+
+    public void setUserRequests(Requests r) {
+        userRequests.add(r);
+    }
 }

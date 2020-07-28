@@ -22,4 +22,7 @@ public class Platform {
     private long id;
 
     private String platform;
+
+//    @ManyToMany(targetEntity = Game.class)
+//    private Set<Game> games;
 }
