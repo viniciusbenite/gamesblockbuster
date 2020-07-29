@@ -1,4 +1,7 @@
 package com.blockbuster.gamesblockbuster.repositories;
 
-public interface ConcreteGameRepository {
+import com.blockbuster.gamesblockbuster.models.ConcreteGame;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ConcreteGameRepository  extends JpaRepository<ConcreteGame, Long> {
 }

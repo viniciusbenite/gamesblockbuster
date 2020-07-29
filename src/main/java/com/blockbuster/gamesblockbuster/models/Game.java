@@ -24,7 +24,4 @@ public class Game {
     private String title;
     private String genre;
     private int releaseYear;
-
-//    @ManyToMany(targetEntity = Platform.class)
-//    private Set<Platform> platforms;
 }

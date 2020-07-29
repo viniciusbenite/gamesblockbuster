@@ -20,13 +20,12 @@ public class Requests {
     private long id;
 
     private String status; // 'approved', 'denied' or 'pending'
-    private boolean returned; // true: returned, false: product with user
     private Date requestDate;
     private int numberOfDays;
     private int extraDays;
 
     @OneToOne(targetEntity = User.class)
     private User requestOwner;
-    @OneToOne(targetEntity = GamePlatform.class)
-    private GamePlatform requestedGame;
+    @OneToOne(targetEntity = ConcreteGame.class)
+    private ConcreteGame requestedGame;
 }

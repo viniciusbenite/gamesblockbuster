@@ -20,6 +20,7 @@ public class GamePlatform {
     private Game game;
     @OneToOne
     private Platform platform;
+
     private int quantity;
     private int borrowedQuantity;
 }

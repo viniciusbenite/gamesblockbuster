@@ -1,8 +1,10 @@
 package com.blockbuster.gamesblockbuster.controllers;
 
+import com.blockbuster.gamesblockbuster.models.ConcreteGame;
 import com.blockbuster.gamesblockbuster.models.GamePlatform;
 import com.blockbuster.gamesblockbuster.models.Requests;
 import com.blockbuster.gamesblockbuster.models.User;
+import com.blockbuster.gamesblockbuster.repositories.ConcreteGameRepository;
 import com.blockbuster.gamesblockbuster.repositories.GamePlatformRepository;
 import com.blockbuster.gamesblockbuster.repositories.RequestRepository;
 import com.blockbuster.gamesblockbuster.repositories.UserRepository;
@@ -21,12 +23,15 @@ public class RequestController {
     private final RequestRepository requestRepository;
     private final GamePlatformRepository gamePlatformRepository;
     private final UserRepository userRepository;
+    private final ConcreteGameRepository concreteGameRepository;
+    private GameState gameState;
 
     public RequestController(RequestRepository requestRepository, GamePlatformRepository gamePlatformRepository,
-                             UserRepository userRepository) {
+                             UserRepository userRepository, ConcreteGameRepository concreteGameRepository) {
         this.requestRepository = requestRepository;
         this.gamePlatformRepository = gamePlatformRepository;
         this.userRepository = userRepository;
+        this.concreteGameRepository = concreteGameRepository;
     }
 
     @GetMapping
@@ -43,19 +48,12 @@ public class RequestController {
 
     @PostMapping
     Requests createNewRequest(@RequestBody Requests newRequest) {
-        //TODO this cant be on post! newRequest.getId() == 0, its auto generated
-//        long _id = getUserId(newRequest.getId());
-//        userRepository.findById(_id)
-//                .map(user1 -> {
-//                    user1.setUserRequests(newRequest);
-//                    return null;
-//                });
         return requestRepository.save(newRequest);
     }
 
     @PatchMapping(path = {"/{id}"})
     ResponseEntity<Requests> dealWithRequest(@PathVariable("id") long id,
-                                             @RequestBody Requests request) {
+                                             @RequestBody Requests request) throws Exception {
 
         long _id = getGamePlatId(id);
 
@@ -120,7 +118,7 @@ public class RequestController {
     public long getGamePlatId(long id) {
         long _id = requestRepository.findById(id)
                 .map(Requests::getRequestedGame)
-                .map(GamePlatform::getId).orElse(-1L);
+                .map(ConcreteGame::getId).orElse(-1L);
         System.out.println("GamePlatform ID is: " + _id);
         return _id;
     }
